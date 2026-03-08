@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SECURITY ALERT</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: "Courier New", monospace;
+    background:#050505;
+    color:#00ff9c;
+    overflow:hidden;
+}
+
+#scanlines{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events:none;
+}
+
+header{
+    text-align:center;
+    padding:20px;
+    border-bottom:1px solid #00ff9c;
+}
+
+h1{
+    font-size:40px;
+    letter-spacing:3px;
+}
+
+.alert{
+    color:#ff2e2e;
+    font-size:22px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0.2}
+}
+
+.container{
+    padding:30px;
+}
+
+.panel{
+    border:1px solid #00ff9c;
+    padding:20px;
+    margin-bottom:20px;
+    background:#0a0a0a;
+}
+
+.log{
+    height:200px;
+    overflow-y:auto;
+    background:black;
+    padding:10px;
+    font-size:14px;
+}
+
+button{
+    background:#00ff9c;
+    border:none;
+    padding:10px 20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#00cc7a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="scanlines"></div>
+
+<header>
+<h1>FACILITY SECURITY NETWORK</h1>
+<div class="alert">⚠ SECURITY BREACH DETECTED</div>
+</header>
+
+<div class="container">
+
+<div class="panel">
+<h2>Facility Status</h2>
+<p>Location: <b>CLASSIFIED</b></p>
+<p>System State: <span style="color:red">COMPROMISED</span></p>
+<p>Firewall Integrity: 32%</p>
+<p>Intrusion Source: UNKNOWN</p>
+</div>
+
+<div class="panel">
+<h2>Intrusion Log</h2>
+<div class="log" id="log">
+Initializing security monitor...
+</div>
+</div>
+
+<div class="panel">
+<h2>System Actions</h2>
+<button onclick="lockdown()">Initiate Lockdown</button>
+<button onclick="trace()">Trace Intruder</button>
+<button onclick="restore()">Restore Firewall</button>
+</div>
+
+</div>
+
+<script>
+
+const log = document.getElementById("log")
+
+function addLog(text){
+    log.innerHTML += "<br>> " + text
+    log.scrollTop = log.scrollHeight
+}
+
+const messages = [
+"Unauthorized access detected",
+"Firewall bypass attempt",
+"Encrypted tunnel opened",
+"Database scan initiated",
+"Security node offline",
+"Unknown device connected",
+"Packet flood detected"
+]
+
+setInterval(()=>{
+    const msg = messages[Math.floor(Math.random()*messages.length)]
+    addLog(msg)
+},2000)
+
+function lockdown(){
+    addLog("LOCKDOWN PROTOCOL INITIATED")
+}
+
+function trace(){
+    addLog("Tracing intruder IP...")
+    setTimeout(()=>addLog("Trace failed: Proxy chain detected"),2000)
+}
+
+function restore(){
+    addLog("Firewall restoring...")
+    setTimeout(()=>addLog("Firewall strength: 68%"),2000)
+}
+
+</script>
+
+</body>
+</html>
